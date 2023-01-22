@@ -1,14 +1,17 @@
-import { useState } from "react";
+import { RecoilRoot } from "recoil";
 import Header from "./Header.jsx";
-import CreateNewTask from "./CreateNewTask.jsx";
+import Board from "./Board.jsx";
+import Footer from "./Footer.jsx";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <main >
-      <Header />
-    </main>
+    <RecoilRoot>
+      <main>
+        <Header />
+        <Board />
+        <Footer />
+      </main>
+    </RecoilRoot>
   );
 }
 
