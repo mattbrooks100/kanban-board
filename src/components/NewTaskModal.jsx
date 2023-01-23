@@ -1,9 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import { newTaskShow } from "../newTaskShow.js";
+import axios from "axios";
 
 const NewTaskModal = () => {
   const [taskShow, setNewTaskShow] = useRecoilState(newTaskShow);
+  const [description, setDescription] = useState("");
+  const [date, setDate] = useState("");
+  const [status, setStatus] = useState("");
+
+  const updateDescription = (e) => {
+    setDescription(e.target.value);
+  };
+
+  const updateDate = (e) => {
+    setDate(e.target.value);
+  };
+
+  const updateStatus = (e) => {
+    setStatus(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(description, date, status);
+    // const { data: newTask } = await axios({
+    //     url: "http://localhost:3000/api/tasks",
+    //     method: "POST",
+    //     data: { newTaskData }
+    // })
+  };
 
   return (
     <div
@@ -24,13 +50,15 @@ const NewTaskModal = () => {
         </div>
         {/* Modal Body */}
         <div className="modal-body flex flex-row relative p-4">
-          <form className="w-full" id="new-task-form">
+          <form className="w-full" id="new-task-form" onSubmit={handleSubmit}>
             <div className="flex items-center">
               <label className="font-semibold">Description</label>
               <textarea
                 name="new-description"
                 placeholder="Enter description here"
                 className="border-solid border-2 w-full h-15 ml-2"
+                value={description}
+                onChange={updateDescription}
                 required
               ></textarea>
             </div>
@@ -40,28 +68,34 @@ const NewTaskModal = () => {
                 type="date"
                 name="new-date"
                 className="border-solid border-2 ml-6"
+                value={date}
+                onChange={updateDate}
                 required
               ></input>
             </div>
             <div>
               <label className="font-semibold">Task Status</label>
-              <select className="border-solid border-2 ml-2">
+              <select className="border-solid border-2 ml-2" value={status} onChange={updateStatus}>
+                <option value="" disabled>
+                  Select one
+                </option>
                 <option value="to_do">To do</option>
                 <option value="in_progress">In progress</option>
                 <option value="complete">Complete</option>
               </select>
             </div>
+            <div className="modal-footer flex justify-center border-t-2 mt-4">
+              <button
+                type="submit"
+                className=" text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg py-2 px-4 mt-4"
+                onClick={(e) => {
+                  console.log(e.target.form);
+                }}
+              >
+                Submit
+              </button>
+            </div>
           </form>
-        </div>
-        <div className="modal-footer flex justify-center border-t-2 mx-4 py-2">
-          <button
-            className=" text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-            onClick={(e) => {
-              console.log(e.target);
-            }}
-          >
-            Submit
-          </button>
         </div>
       </div>
     </div>

@@ -18,7 +18,6 @@ const App = () => {
     axios("http://localhost:3000/api/tasks").then((res) => {
       const tasks = res.data;
       setTasks(tasks);
-      console.log(tasks);
     });
   }, []);
 
