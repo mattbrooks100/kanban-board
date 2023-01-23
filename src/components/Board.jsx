@@ -5,7 +5,7 @@ import ToDo from "./ToDo.jsx";
 
 const Board = () => {
   return (
-    <div>
+    <div className="flex bg-zinc-700 h-screen">
       <ToDo />
     </div>
   );

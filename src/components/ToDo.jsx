@@ -7,8 +7,10 @@ const ToDo = () => {
   const [tasks, setTasks] = useRecoilState(tasksState);
 
   return (
-    <div>
-      <p>To Do</p>
+    <div className="flex flex-col m-4 p-4 bg-zinc-800 text-white content-start rounded-lg">
+      <div className="flex justify-center pb-2 text-3xl font-bold border-b-2 border-zinc-500">
+        To Do
+      </div>
       <div>
         {tasks
           .filter((task) => task.to_do)
