@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import { newTaskShow } from "../newTaskShow.js";
+import { tasksState } from "../tasksState.js";
 import axios from "axios";
 
 const NewTaskModal = () => {
   const [taskShow, setNewTaskShow] = useRecoilState(newTaskShow);
+  const [tasks, setTasks] = useRecoilState(tasksState);
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
   const [status, setStatus] = useState("");
@@ -23,12 +25,21 @@ const NewTaskModal = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(description, date, status);
-    // const { data: newTask } = await axios({
-    //     url: "http://localhost:3000/api/tasks",
-    //     method: "POST",
-    //     data: { newTaskData }
-    // })
+    const newTask = {
+      description,
+      due_date: date,
+      to_do: status == "to_do",
+      in_progress: status == "in_progress",
+      complete: status == "complete",
+    };
+    console.log(newTask);
+    axios.post("http://localhost:3000/api/tasks", newTask).then((res) => console.log(res));
+
+    setTasks([...tasks, newTask]);
+    setDescription("");
+    setDate("");
+    setStatus("");
+    setNewTaskShow(false);
   };
 
   return (
@@ -88,9 +99,6 @@ const NewTaskModal = () => {
               <button
                 type="submit"
                 className=" text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg py-2 px-4 mt-4"
-                onClick={(e) => {
-                  console.log(e.target.form);
-                }}
               >
                 Submit
               </button>
