@@ -48,7 +48,7 @@ const NewTaskModal = () => {
 
   return (
     <div
-      className="modal-background absolute insert-0 w-full h-full bg-gray-600 bg-opacity-50"
+      className="modal-background absolute insert-0 w-full h-[calc(100%-104px)] bg-gray-600 bg-opacity-50"
       id="new-task-modal"
     >
       {/* Modal Container */}
