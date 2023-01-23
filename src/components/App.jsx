@@ -18,7 +18,7 @@ const App = () => {
   }, []);
 
   return (
-    <main>
+    <main className="bg-zinc-700 h-screen">
       <Header />
       <Board />
       <Footer />
