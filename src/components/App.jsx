@@ -5,6 +5,7 @@ import axios from "axios";
 import Header from "./Header.jsx";
 import Board from "./Board.jsx";
 import Footer from "./Footer.jsx";
+import NewTaskModal from "./NewTaskModal.jsx";
 
 const App = () => {
   const [tasks, setTasks] = useRecoilState(tasksState);
@@ -20,6 +21,7 @@ const App = () => {
   return (
     <main className="bg-zinc-700 h-screen">
       <Header />
+      <NewTaskModal />
       <Board />
       <Footer />
     </main>
