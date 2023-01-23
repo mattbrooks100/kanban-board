@@ -24,7 +24,7 @@ const Task = ({ task }) => {
 
   const handleDelete = () => {
     // DELETE request to the server to remove task from DB
-    axios.delete(`http://localhost:3000/api/tasks/${id}`).then((res) => console.log(res));
+    axios.delete(`http://localhost:3000/api/tasks/${task.id}`).then((res) => console.log(res));
 
     // Remove the task from React tasksState
     setTasks(tasks.filter((item) => item.id !== task.id));
