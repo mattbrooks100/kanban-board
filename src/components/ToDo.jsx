@@ -15,7 +15,7 @@ const ToDo = () => {
         {tasks
           .filter((task) => task.to_do)
           .map((task) => (
-            <Task key={task.id} task={task} />
+            <Task key={task.description} task={task} />
           ))}
       </div>
     </div>

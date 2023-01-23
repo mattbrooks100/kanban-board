@@ -15,7 +15,7 @@ const Complete = () => {
         {tasks
           .filter((task) => task.complete)
           .map((task) => (
-            <Task key={task.id} task={task} />
+            <Task key={task.description} task={task} />
           ))}
       </div>
     </div>

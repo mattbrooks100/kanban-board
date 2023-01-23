@@ -35,10 +35,10 @@ const NewTaskModal = () => {
       complete: status == "complete",
     };
 
-    // POST request to the server to update the DB
+    // POST request to the server to update the DB with the new task
     axios.post("http://localhost:3000/api/tasks", newTask).then((res) => console.log(res));
 
-    // Update React tasksState and reset the new task form
+    // Add new task to React tasksState and reset the new task form
     setTasks([...tasks, newTask]);
     setDescription("");
     setDate("");
@@ -90,7 +90,12 @@ const NewTaskModal = () => {
             </div>
             <div>
               <label className="font-semibold">Task Status</label>
-              <select className="border-solid border-2 ml-2" value={status} onChange={updateStatus} required>
+              <select
+                className="border-solid border-2 ml-2"
+                value={status}
+                onChange={updateStatus}
+                required
+              >
                 <option value="" disabled>
                   Select one
                 </option>
